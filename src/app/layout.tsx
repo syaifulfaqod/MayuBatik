@@ -1,20 +1,10 @@
 import type { Metadata } from "next";
-import { Playfair_Display, Inter } from "next/font/google";
 import "./globals.css";
-
-const playfair = Playfair_Display({
-  subsets: ["latin"],
-  variable: "--font-playfair",
-});
-
-const inter = Inter({
-  subsets: ["latin"],
-  variable: "--font-inter",
-});
+import Script from "next/script";
 
 export const metadata: Metadata = {
-  title: "Mayu Batik | Digitalizing the Thread",
-  description: "Optimasi aset visual batik tradisional untuk era digital profesional.",
+  title: "Mayu Batik",
+  description: "Website Mayu Batik",
 };
 
 export default function RootLayout({
@@ -23,9 +13,24 @@ export default function RootLayout({
   children: React.ReactNode;
 }>) {
   return (
-    <html lang="id">
-      <body className={`${playfair.variable} ${inter.variable} antialiased`}>
+    <html lang="en">
+      <body>
         {children}
+
+        {/* Google Analytics */}
+        <Script
+          src="https://www.googletagmanager.com/gtag/js?id=G-CZZTS8NMET"
+          strategy="afterInteractive"
+        />
+        <Script id="google-analytics" strategy="afterInteractive">
+          {`
+            window.dataLayer = window.dataLayer || [];
+            function gtag(){dataLayer.push(arguments);}
+            gtag('js', new Date());
+
+            gtag('config', 'G-CZZTS8NMET');
+          `}
+        </Script>
       </body>
     </html>
   );
